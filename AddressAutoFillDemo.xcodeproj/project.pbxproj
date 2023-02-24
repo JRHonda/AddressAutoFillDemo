@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6747850529A952E6009CF12E /* MapboxSearch in Frameworks */ = {isa = PBXBuildFile; productRef = 6747850429A952E6009CF12E /* MapboxSearch */; };
+		6747850729A952E6009CF12E /* MapboxSearchUI in Frameworks */ = {isa = PBXBuildFile; productRef = 6747850629A952E6009CF12E /* MapboxSearchUI */; };
 		67E1ECE129A914DA0003825E /* NativeAddressForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E1ECE029A914DA0003825E /* NativeAddressForm.swift */; };
 		67E240AA29A6880800F6E994 /* AddressAutoFillDemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E240A929A6880800F6E994 /* AddressAutoFillDemoApp.swift */; };
 		67E240AC29A6880800F6E994 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E240AB29A6880800F6E994 /* ContentView.swift */; };
@@ -25,6 +27,7 @@
 
 /* Begin PBXFileReference section */
 		67E1ECE029A914DA0003825E /* NativeAddressForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeAddressForm.swift; sourceTree = "<group>"; };
+		67E1ECE229A948DA0003825E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		67E240A629A6880800F6E994 /* AddressAutoFillDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AddressAutoFillDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		67E240A929A6880800F6E994 /* AddressAutoFillDemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressAutoFillDemoApp.swift; sourceTree = "<group>"; };
 		67E240AB29A6880800F6E994 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -46,6 +49,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				67F0E88D29A806A000619BE8 /* SmartyStreets in Frameworks */,
+				6747850729A952E6009CF12E /* MapboxSearchUI in Frameworks */,
+				6747850529A952E6009CF12E /* MapboxSearch in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -71,6 +76,7 @@
 		67E240A829A6880800F6E994 /* AddressAutoFillDemo */ = {
 			isa = PBXGroup;
 			children = (
+				67E1ECE229A948DA0003825E /* Info.plist */,
 				67F0E88329A802F500619BE8 /* ReusableViews */,
 				67F0E89329A820A800619BE8 /* Extensions */,
 				67F0E88E29A80BA800619BE8 /* Models */,
@@ -162,6 +168,8 @@
 			name = AddressAutoFillDemo;
 			packageProductDependencies = (
 				67F0E88C29A806A000619BE8 /* SmartyStreets */,
+				6747850429A952E6009CF12E /* MapboxSearch */,
+				6747850629A952E6009CF12E /* MapboxSearchUI */,
 			);
 			productName = AddressAutoFillDemo;
 			productReference = 67E240A629A6880800F6E994 /* AddressAutoFillDemo.app */;
@@ -193,6 +201,7 @@
 			mainGroup = 67E2409D29A6880800F6E994;
 			packageReferences = (
 				67F0E88B29A806A000619BE8 /* XCRemoteSwiftPackageReference "smartystreets-ios-sdk" */,
+				6747850329A952E6009CF12E /* XCRemoteSwiftPackageReference "search-ios" */,
 			);
 			productRefGroup = 67E240A729A6880800F6E994 /* Products */;
 			projectDirPath = "";
@@ -362,6 +371,8 @@
 				DEVELOPMENT_TEAM = P65G69K8PY;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AddressAutoFillDemo/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "AddressAutoFillDemo requests to use your location";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -391,6 +402,8 @@
 				DEVELOPMENT_TEAM = P65G69K8PY;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AddressAutoFillDemo/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "AddressAutoFillDemo requests to use your location";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -433,6 +446,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		6747850329A952E6009CF12E /* XCRemoteSwiftPackageReference "search-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mapbox/search-ios.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		67F0E88B29A806A000619BE8 /* XCRemoteSwiftPackageReference "smartystreets-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/smartystreets/smartystreets-ios-sdk";
@@ -444,6 +465,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		6747850429A952E6009CF12E /* MapboxSearch */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6747850329A952E6009CF12E /* XCRemoteSwiftPackageReference "search-ios" */;
+			productName = MapboxSearch;
+		};
+		6747850629A952E6009CF12E /* MapboxSearchUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6747850329A952E6009CF12E /* XCRemoteSwiftPackageReference "search-ios" */;
+			productName = MapboxSearchUI;
+		};
 		67F0E88C29A806A000619BE8 /* SmartyStreets */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 67F0E88B29A806A000619BE8 /* XCRemoteSwiftPackageReference "smartystreets-ios-sdk" */;
