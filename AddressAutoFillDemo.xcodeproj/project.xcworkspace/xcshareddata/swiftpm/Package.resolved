@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "smartystreets-ios-sdk",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/smartystreets/smartystreets-ios-sdk",
+      "state" : {
+        "revision" : "686b788d06cc44843e0a92be92a40701eefb69fb",
+        "version" : "8.10.20"
+      }
+    }
+  ],
+  "version" : 2
+}

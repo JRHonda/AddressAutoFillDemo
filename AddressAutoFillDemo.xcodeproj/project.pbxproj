@@ -7,18 +7,37 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		67E1ECE129A914DA0003825E /* NativeAddressForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E1ECE029A914DA0003825E /* NativeAddressForm.swift */; };
 		67E240AA29A6880800F6E994 /* AddressAutoFillDemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E240A929A6880800F6E994 /* AddressAutoFillDemoApp.swift */; };
 		67E240AC29A6880800F6E994 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E240AB29A6880800F6E994 /* ContentView.swift */; };
 		67E240AE29A6880900F6E994 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67E240AD29A6880900F6E994 /* Assets.xcassets */; };
 		67E240B129A6880900F6E994 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67E240B029A6880900F6E994 /* Preview Assets.xcassets */; };
+		67F0E88229A802D100619BE8 /* AddressSubmitFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F0E88129A802D100619BE8 /* AddressSubmitFormView.swift */; };
+		67F0E88529A8030100619BE8 /* AddressForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F0E88429A8030100619BE8 /* AddressForm.swift */; };
+		67F0E88829A8045600619BE8 /* AddressSuggester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F0E88729A8045600619BE8 /* AddressSuggester.swift */; };
+		67F0E88A29A804E000619BE8 /* SmartyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F0E88929A804E000619BE8 /* SmartyService.swift */; };
+		67F0E88D29A806A000619BE8 /* SmartyStreets in Frameworks */ = {isa = PBXBuildFile; productRef = 67F0E88C29A806A000619BE8 /* SmartyStreets */; };
+		67F0E89029A80BB400619BE8 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F0E88F29A80BB400619BE8 /* Address.swift */; };
+		67F0E89229A8177A00619BE8 /* MKLocalSearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F0E89129A8177A00619BE8 /* MKLocalSearchService.swift */; };
+		67F0E89529A820B400619BE8 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F0E89429A820B400619BE8 /* String+Extensions.swift */; };
+		67F0E89729A8485300619BE8 /* MapBoxService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F0E89629A8485300619BE8 /* MapBoxService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		67E1ECE029A914DA0003825E /* NativeAddressForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeAddressForm.swift; sourceTree = "<group>"; };
 		67E240A629A6880800F6E994 /* AddressAutoFillDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AddressAutoFillDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		67E240A929A6880800F6E994 /* AddressAutoFillDemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressAutoFillDemoApp.swift; sourceTree = "<group>"; };
 		67E240AB29A6880800F6E994 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		67E240AD29A6880900F6E994 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		67E240B029A6880900F6E994 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		67F0E88129A802D100619BE8 /* AddressSubmitFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressSubmitFormView.swift; sourceTree = "<group>"; };
+		67F0E88429A8030100619BE8 /* AddressForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressForm.swift; sourceTree = "<group>"; };
+		67F0E88729A8045600619BE8 /* AddressSuggester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressSuggester.swift; sourceTree = "<group>"; };
+		67F0E88929A804E000619BE8 /* SmartyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartyService.swift; sourceTree = "<group>"; };
+		67F0E88F29A80BB400619BE8 /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
+		67F0E89129A8177A00619BE8 /* MKLocalSearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MKLocalSearchService.swift; sourceTree = "<group>"; };
+		67F0E89429A820B400619BE8 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
+		67F0E89629A8485300619BE8 /* MapBoxService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapBoxService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -26,6 +45,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				67F0E88D29A806A000619BE8 /* SmartyStreets in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -51,6 +71,12 @@
 		67E240A829A6880800F6E994 /* AddressAutoFillDemo */ = {
 			isa = PBXGroup;
 			children = (
+				67F0E88329A802F500619BE8 /* ReusableViews */,
+				67F0E89329A820A800619BE8 /* Extensions */,
+				67F0E88E29A80BA800619BE8 /* Models */,
+				67F0E88029A802C000619BE8 /* MapBox */,
+				67F0E87F29A802BB00619BE8 /* Smarty */,
+				67F0E87E29A802B300619BE8 /* Native */,
 				67E240A929A6880800F6E994 /* AddressAutoFillDemoApp.swift */,
 				67E240AB29A6880800F6E994 /* ContentView.swift */,
 				67E240AD29A6880900F6E994 /* Assets.xcassets */,
@@ -65,6 +91,57 @@
 				67E240B029A6880900F6E994 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		67F0E87E29A802B300619BE8 /* Native */ = {
+			isa = PBXGroup;
+			children = (
+				67F0E89129A8177A00619BE8 /* MKLocalSearchService.swift */,
+				67E1ECE029A914DA0003825E /* NativeAddressForm.swift */,
+			);
+			path = Native;
+			sourceTree = "<group>";
+		};
+		67F0E87F29A802BB00619BE8 /* Smarty */ = {
+			isa = PBXGroup;
+			children = (
+				67F0E88929A804E000619BE8 /* SmartyService.swift */,
+			);
+			path = Smarty;
+			sourceTree = "<group>";
+		};
+		67F0E88029A802C000619BE8 /* MapBox */ = {
+			isa = PBXGroup;
+			children = (
+				67F0E89629A8485300619BE8 /* MapBoxService.swift */,
+			);
+			path = MapBox;
+			sourceTree = "<group>";
+		};
+		67F0E88329A802F500619BE8 /* ReusableViews */ = {
+			isa = PBXGroup;
+			children = (
+				67F0E88129A802D100619BE8 /* AddressSubmitFormView.swift */,
+				67F0E88429A8030100619BE8 /* AddressForm.swift */,
+			);
+			path = ReusableViews;
+			sourceTree = "<group>";
+		};
+		67F0E88E29A80BA800619BE8 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				67F0E88729A8045600619BE8 /* AddressSuggester.swift */,
+				67F0E88F29A80BB400619BE8 /* Address.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		67F0E89329A820A800619BE8 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				67F0E89429A820B400619BE8 /* String+Extensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +160,9 @@
 			dependencies = (
 			);
 			name = AddressAutoFillDemo;
+			packageProductDependencies = (
+				67F0E88C29A806A000619BE8 /* SmartyStreets */,
+			);
 			productName = AddressAutoFillDemo;
 			productReference = 67E240A629A6880800F6E994 /* AddressAutoFillDemo.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +191,9 @@
 				Base,
 			);
 			mainGroup = 67E2409D29A6880800F6E994;
+			packageReferences = (
+				67F0E88B29A806A000619BE8 /* XCRemoteSwiftPackageReference "smartystreets-ios-sdk" */,
+			);
 			productRefGroup = 67E240A729A6880800F6E994 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -137,8 +220,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				67F0E89529A820B400619BE8 /* String+Extensions.swift in Sources */,
+				67F0E89229A8177A00619BE8 /* MKLocalSearchService.swift in Sources */,
+				67F0E88529A8030100619BE8 /* AddressForm.swift in Sources */,
 				67E240AC29A6880800F6E994 /* ContentView.swift in Sources */,
+				67F0E88229A802D100619BE8 /* AddressSubmitFormView.swift in Sources */,
+				67F0E88829A8045600619BE8 /* AddressSuggester.swift in Sources */,
 				67E240AA29A6880800F6E994 /* AddressAutoFillDemoApp.swift in Sources */,
+				67F0E89729A8485300619BE8 /* MapBoxService.swift in Sources */,
+				67F0E89029A80BB400619BE8 /* Address.swift in Sources */,
+				67F0E88A29A804E000619BE8 /* SmartyService.swift in Sources */,
+				67E1ECE129A914DA0003825E /* NativeAddressForm.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -339,6 +431,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		67F0E88B29A806A000619BE8 /* XCRemoteSwiftPackageReference "smartystreets-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/smartystreets/smartystreets-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		67F0E88C29A806A000619BE8 /* SmartyStreets */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 67F0E88B29A806A000619BE8 /* XCRemoteSwiftPackageReference "smartystreets-ios-sdk" */;
+			productName = SmartyStreets;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 67E2409E29A6880800F6E994 /* Project object */;
 }
