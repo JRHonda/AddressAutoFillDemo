@@ -11,8 +11,6 @@ import SmartyStreets
 
 final class SmartyService {
 
-    var addressSuggestions = PassthroughSubject<[Address], Error>()
-
     var autoCompleteClient: USAutocompleteProClient
 
     init() {
@@ -27,33 +25,33 @@ final class SmartyService {
 
 extension SmartyService: AddressSuggester {
 
-    func suggestAddresses(from input: String) {
-        var lookup = USAutocompleteProLookup().withSearch(search: input)
-        var error: NSError?
+    func suggestAddresses(from input: String) -> Future<[Address], Error> {
+        .init { [weak self] promise in
+            var lookup = USAutocompleteProLookup().withSearch(search: input)
+            var error: NSError?
 
-        _ = autoCompleteClient.sendLookup(lookup: &lookup, error: &error) // returns a Bool
+            _ = self?.autoCompleteClient.sendLookup(lookup: &lookup, error: &error) // returns a Bool
 
-        if let error {
-            let output = """
-            Domain: \(error.domain)
-            Error Code: \(error.code)
-            Description: \n\(error.userInfo[NSLocalizedDescriptionKey] as! NSString)
-            """
+            if let error {
+                let output = """
+                Domain: \(error.domain)
+                Error Code: \(error.code)
+                Description: \n\(error.userInfo[NSLocalizedDescriptionKey] as! NSString)
+                """
 
-            print(output)
+                print(output)
 
-            addressSuggestions.send([])
+                promise(.success([]))
 
-            return
-        }
+                return
+            }
 
-        guard let suggestions = lookup.result?.suggestions else {
-            addressSuggestions.send([])
-            return
-        }
+            guard let suggestions = lookup.result?.suggestions else {
+                promise(.success([]))
+                return
+            }
 
-        addressSuggestions.send(
-            suggestions.prefix(6)
+            let mappedSuggestions: [Address] = suggestions/*.prefix(6)*/
                 .reduce(into: []) { partialResult, suggestion in
                     let address = Address(
                         addressLine1: suggestion.streetLine ?? "",
@@ -64,7 +62,9 @@ extension SmartyService: AddressSuggester {
                     )
                     partialResult.append(address)
                 }
-        )
+
+            promise(.success(mappedSuggestions))
+        }
     }
 
 }

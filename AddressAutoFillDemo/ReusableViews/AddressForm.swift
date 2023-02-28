@@ -48,14 +48,14 @@ struct AddressForm: View {
 
     @ViewBuilder
     private var addressSuggestions: some View {
-        if viewModel.addressSuggestions.value.isEmpty == false && isFocused == true && userWantsToEnterAddressManually == false {
-            ForEach(viewModel.addressSuggestions.value) { addressSuggestion in
+        if viewModel.addressSuggestions.isEmpty == false && isFocused == true && userWantsToEnterAddressManually == false {
+            ForEach(viewModel.addressSuggestions) { addressSuggestion in
                 Button {
                     withAnimation {
                         userSelectedAnAddressSuggestion = true
                         isFocused = false
                         address = addressSuggestion
-                        viewModel.addressSuggestions.send([])
+                        viewModel.addressSuggestions = []
                     }
                 } label: {
                     VStack(alignment: .leading) {
@@ -80,7 +80,7 @@ struct AddressForm: View {
     private var onSubmitButton: some View {
         Button("Submit") {
             onSubmit?()
-            viewModel.addressSuggestions.send([])
+            viewModel.addressSuggestions = []
         }
         .frame(maxWidth: .infinity)
         .disabled(onSubmit == nil)
@@ -98,17 +98,18 @@ struct AddressForm_Previews: PreviewProvider {
 
 import Combine
 private class AddressSuggester_ForPreviews: AddressSuggester {
-    var addressSuggestions = PassthroughSubject<[Address], Error>()
-    func suggestAddresses(from input: String) { }
+    func suggestAddresses(from input: String) -> Future<[Address], Error> {
+        .init { _ in }
+    }
 }
 
 final class AddressFormViewModel: ObservableObject {
 
-    var addressSuggestions = CurrentValueSubject<[Address], Error>([])
+    @Published var addressSuggestions = [Address]()
     let addressInput = PassthroughSubject<String, Never>()
 
     private var addressSuggester: AddressSuggester
-    private var subscriptions = Set<AnyCancellable>()
+    private var tasks = Set<AnyCancellable>()
 
     init(addressSuggester: AddressSuggester) {
         self.addressSuggester = addressSuggester
@@ -117,24 +118,14 @@ final class AddressFormViewModel: ObservableObject {
             .debounce(for: .seconds(0.2), scheduler: RunLoop.main)
             .removeDuplicates()
             .filter { $0.isEmptyString == false }
-            .sink { [weak self] in
+            .compactMap { [weak self] in
                 self?.addressSuggester.suggestAddresses(from: $0)
             }
-            .store(in: &subscriptions)
-
-        addressSuggester.addressSuggestions
-            .receive(on: DispatchQueue.main)
-            .sink { completion in
-                switch completion {
-                case .failure(let error):
-                    print("Address Suggester failed with error: \(error.localizedDescription)")
-                case .finished:
-                    break
-                }
-            } receiveValue: { [weak self] in
-                self?.addressSuggestions.send($0)
+            .sink {
+                $0.replaceError(with: [])
+                    .assign(to: &self.$addressSuggestions)
             }
-            .store(in: &subscriptions)
+            .store(in: &tasks)
     }
 
 }

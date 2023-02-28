@@ -10,7 +10,7 @@ import Foundation
 import SwiftUI
 
 protocol AddressSuggester {
-    var addressSuggestions: PassthroughSubject<[Address], Error> { get }
+    // var addressSuggestions: PassthroughSubject<[Address], Error> { get }
     // TODO: - When working on MapBox solution try to see if I can get rid of the PassthroughSubject and return [Address] from method below
-    func suggestAddresses(from input: String)
+    func suggestAddresses(from input: String) -> Future<[Address], Error>
 }

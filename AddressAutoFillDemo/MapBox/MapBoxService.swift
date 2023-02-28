@@ -22,16 +22,19 @@ import MapboxSearch
  */
 final class MapBoxService: NSObject, CLLocationManagerDelegate {
 
-    var locationManager: CLLocationManager
+    private var locationManager: CLLocationManager
 
-    lazy var addressAutoFill: AddressAutofill = {
+    private lazy var addressAutoFill: AddressAutofill = {
         let accessToken = "pk.eyJ1IjoianVzdGluaG9uZGEiLCJhIjoiY2xlaXg5dWpqMDV0ZjNvbm1obXE3N3h3aSJ9.WzhIAbLvoY6sAQDUOUtL5g"
         let provider = DefaultLocationProvider(locationManager: locationManager)
-        let addressAutoFill = AddressAutofill(accessToken: accessToken, locationProvider: DefaultLocationProvider())
+        let addressAutoFill = AddressAutofill(accessToken: accessToken, locationProvider: provider)
         return addressAutoFill
     }()
-    
-    var addressSuggestions = PassthroughSubject<[Address], Error>()
+
+    private let addressAutoFillOptions = AddressAutofill.Options(
+        countries: [.init(countryCode: "US")!],
+        language: .init(locale: .autoupdatingCurrent)
+    )
 
     override init() {
         locationManager = .init()
@@ -51,38 +54,48 @@ final class MapBoxService: NSObject, CLLocationManagerDelegate {
 
 }
 
+// MARK: - AddressSuggester
+
 extension MapBoxService: AddressSuggester {
 
-    func suggestAddresses(from input: String) {
-        guard let query = AddressAutofill.Query(value: input) else {
-            return
-        }
-        addressAutoFill.suggestions(for: query, with: .init(countries: [.init(countryCode: "US")!], language: .init(locale: .autoupdatingCurrent))) { [weak self] result in
-            switch result {
-            case .success(let results):
-                var addresses = [Address]()
-                for result in results {
-                    let addressComponents = result.result().addressComponents.all
-                    let houseNumber = addressComponents.first { $0.kind == .houseNumber }?.value ?? ""
-                    let streetName = addressComponents.first { $0.kind == .street }?.value ?? ""
-                    let addressLine1 = "\(houseNumber) \(streetName)".trimmingCharacters(in: .whitespaces)
-                    let city = addressComponents.first { $0.kind == .place }?.value ?? ""
-                    let state = addressComponents.first { $0.kind == .region }?.value ?? ""
-                    let zipCode = addressComponents.first { $0.kind == .postcode }?.value ?? ""
-                    let address = Address(
-                        addressLine1: addressLine1,
-                        addressLine2: "",
-                        city: city,
-                        state: state,
-                        zip: zipCode
-                    )
-                    addresses.append(address)
+    func suggestAddresses(from input: String) -> Future<[Address], Error> {
+        .init { [weak self] promise in
+            guard let query = AddressAutofill.Query(value: input) else {
+                promise(.success([]))
+                return
+            }
+
+            self?.addressAutoFill.suggestions(for: query, with: self?.addressAutoFillOptions) { result in
+                switch result {
+                case .success(let suggestions):
+                    var addresses = [Address]()
+                    for suggestion in suggestions {
+                        let addressComponents = suggestion.result().addressComponents.all
+
+                        let houseNumber = addressComponents.first { $0.kind == .houseNumber }?.value ?? ""
+                        let streetName = addressComponents.first { $0.kind == .street }?.value ?? ""
+                        let addressLine1 = "\(houseNumber) \(streetName)".trimmingCharacters(in: .whitespaces)
+
+                        let address = Address(
+                            addressLine1: addressLine1,
+                            addressLine2: "",
+                            city: addressComponents.first { $0.kind == .place }?.value ?? "",
+                            state: addressComponents.first { $0.kind == .region }?.value ?? "",
+                            zip: addressComponents.first { $0.kind == .postcode }?.value ?? ""
+                        )
+
+                        addresses.append(address)
+                    }
+
+                    promise(.success(addresses))
+                    
+                case .failure(let error):
+                    print(error.localizedDescription)
+                    promise(.failure(error))
                 }
-                self?.addressSuggestions.send(addresses)
-            case .failure(let error):
-                print(error.localizedDescription)
             }
         }
+
     }
 
 }

@@ -48,17 +48,17 @@ struct NativeAddressForm: View {
 
     @ViewBuilder
     private var addressSuggestions: some View {
-        if viewModel.locationCompletions.value.isEmpty == false
+        if viewModel.locationCompletions.isEmpty == false
             && isFocused == true
             && userWantsToEnterAddressManually == false {
-            ForEach(viewModel.locationCompletions.value, id: \.self) { localSearchCompletion in
+            ForEach(viewModel.locationCompletions, id: \.self) { localSearchCompletion in
                 Button {
                     withAnimation {
                         viewModel.addressSuggester.reverseGeocode(location: localSearchCompletion) {
                             userSelectedAnAddressSuggestion = true
                             isFocused = false
                             address = $0
-                            viewModel.locationCompletions.send([])
+                            viewModel.locationCompletions = []
                         }
                     }
                 } label: {
@@ -83,7 +83,7 @@ struct NativeAddressForm: View {
     private var onSubmitButton: some View {
         Button("Submit") {
             onSubmit?()
-            viewModel.locationCompletions.send([])
+            viewModel.locationCompletions = []
         }
         .frame(maxWidth: .infinity)
         .disabled(onSubmit == nil)
@@ -101,11 +101,11 @@ import Combine
 import MapKit
 final class NativeAddressViewModel: ObservableObject {
 
-    var locationCompletions = CurrentValueSubject<[MKLocalSearchCompletion], Error>([])
+    @Published var locationCompletions = [MKLocalSearchCompletion]()
     let addressInput = PassthroughSubject<String, Never>()
 
     var addressSuggester: MKLocalSearchService
-    private var subscriptions = Set<AnyCancellable>()
+    private var tasks = Set<AnyCancellable>()
 
     init() {
         self.addressSuggester = MKLocalSearchService()
@@ -114,24 +114,14 @@ final class NativeAddressViewModel: ObservableObject {
             .debounce(for: .seconds(0.2), scheduler: RunLoop.main)
             .removeDuplicates()
             .filter { $0.isEmptyString == false }
-            .sink { [weak self] in
-                self?.addressSuggester.suggestAddresses(from: $0)
+            .compactMap { [weak self] in
+                self?.addressSuggester.initiateAddressSuggestionsSearch(from: $0)
             }
-            .store(in: &subscriptions)
-
-        addressSuggester.addressSuggestions
-            .receive(on: DispatchQueue.main)
-            .sink { completion in
-                switch completion {
-                case .failure(let error):
-                    print("Address Suggester failed with error: \(error.localizedDescription)")
-                case .finished:
-                    break
-                }
-            } receiveValue: { [weak self] in
-                self?.locationCompletions.send($0)
+            .sink {
+                $0.replaceError(with: [])
+                    .assign(to: &self.$locationCompletions)
             }
-            .store(in: &subscriptions)
+            .store(in: &tasks)
     }
 
 }

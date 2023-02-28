@@ -20,7 +20,7 @@ final class MKLocalSearchService: NSObject {
         return searchCompleter
     }()
 
-    var addressSuggestions = PassthroughSubject<[MKLocalSearchCompletion], Error>()
+    var addressSuggestions: Future<[MKLocalSearchCompletion], Error>.Promise?
 
     override init() {
         super.init()
@@ -78,8 +78,11 @@ final class MKLocalSearchService: NSObject {
 
 extension MKLocalSearchService {
 
-    func suggestAddresses(from input: String) {
-        searchCompleter.queryFragment = input
+    func initiateAddressSuggestionsSearch(from input: String) -> Future<[MKLocalSearchCompletion], Error> {
+        .init { [weak self] promise in
+            self?.addressSuggestions = promise
+            self?.searchCompleter.queryFragment = input
+        }
     }
 
 }
@@ -89,11 +92,11 @@ extension MKLocalSearchService {
 extension MKLocalSearchService: MKLocalSearchCompleterDelegate {
 
     func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {
-        addressSuggestions.send(completer.results.filter { $0.subtitle.contains("United States") })
+        addressSuggestions?(.success(completer.results))
     }
 
     func completer(_ completer: MKLocalSearchCompleter, didFailWithError error: Error) {
-        addressSuggestions.send(completion: .failure(error))
+        addressSuggestions?(.failure(error))
     }
 
 }

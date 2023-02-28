@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		6747850529A952E6009CF12E /* MapboxSearch in Frameworks */ = {isa = PBXBuildFile; productRef = 6747850429A952E6009CF12E /* MapboxSearch */; };
 		6747850729A952E6009CF12E /* MapboxSearchUI in Frameworks */ = {isa = PBXBuildFile; productRef = 6747850629A952E6009CF12E /* MapboxSearchUI */; };
+		6747852629AD127C009CF12E /* NativeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6747852529AD127C009CF12E /* NativeTests.swift */; };
+		6747852829AD3369009CF12E /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6747852729AD3369009CF12E /* Utilities.swift */; };
+		6747852A29AD37A2009CF12E /* SmartyStreetsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6747852929AD37A2009CF12E /* SmartyStreetsTests.swift */; };
+		6747852C29AD3F41009CF12E /* MapBoxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6747852B29AD3F41009CF12E /* MapBoxTests.swift */; };
 		67E1ECE129A914DA0003825E /* NativeAddressForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E1ECE029A914DA0003825E /* NativeAddressForm.swift */; };
 		67E240AA29A6880800F6E994 /* AddressAutoFillDemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E240A929A6880800F6E994 /* AddressAutoFillDemoApp.swift */; };
 		67E240AC29A6880800F6E994 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E240AB29A6880800F6E994 /* ContentView.swift */; };
@@ -25,7 +29,22 @@
 		67F0E89729A8485300619BE8 /* MapBoxService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F0E89629A8485300619BE8 /* MapBoxService.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		6747852029AD11FA009CF12E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 67E2409E29A6880800F6E994 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 67E240A529A6880800F6E994;
+			remoteInfo = AddressAutoFillDemo;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		6747851C29AD11FA009CF12E /* AddressAutoFillDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AddressAutoFillDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6747852529AD127C009CF12E /* NativeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeTests.swift; sourceTree = "<group>"; };
+		6747852729AD3369009CF12E /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		6747852929AD37A2009CF12E /* SmartyStreetsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartyStreetsTests.swift; sourceTree = "<group>"; };
+		6747852B29AD3F41009CF12E /* MapBoxTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapBoxTests.swift; sourceTree = "<group>"; };
 		67E1ECE029A914DA0003825E /* NativeAddressForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeAddressForm.swift; sourceTree = "<group>"; };
 		67E1ECE229A948DA0003825E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		67E240A629A6880800F6E994 /* AddressAutoFillDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AddressAutoFillDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -44,6 +63,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		6747851929AD11FA009CF12E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		67E240A329A6880800F6E994 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -57,10 +83,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6747851D29AD11FA009CF12E /* AddressAutoFillDemoTests */ = {
+			isa = PBXGroup;
+			children = (
+				6747852529AD127C009CF12E /* NativeTests.swift */,
+				6747852729AD3369009CF12E /* Utilities.swift */,
+				6747852929AD37A2009CF12E /* SmartyStreetsTests.swift */,
+				6747852B29AD3F41009CF12E /* MapBoxTests.swift */,
+			);
+			path = AddressAutoFillDemoTests;
+			sourceTree = "<group>";
+		};
 		67E2409D29A6880800F6E994 = {
 			isa = PBXGroup;
 			children = (
 				67E240A829A6880800F6E994 /* AddressAutoFillDemo */,
+				6747851D29AD11FA009CF12E /* AddressAutoFillDemoTests */,
 				67E240A729A6880800F6E994 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -69,6 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				67E240A629A6880800F6E994 /* AddressAutoFillDemo.app */,
+				6747851C29AD11FA009CF12E /* AddressAutoFillDemoTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -153,6 +192,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		6747851B29AD11FA009CF12E /* AddressAutoFillDemoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6747852229AD11FA009CF12E /* Build configuration list for PBXNativeTarget "AddressAutoFillDemoTests" */;
+			buildPhases = (
+				6747851829AD11FA009CF12E /* Sources */,
+				6747851929AD11FA009CF12E /* Frameworks */,
+				6747851A29AD11FA009CF12E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6747852129AD11FA009CF12E /* PBXTargetDependency */,
+			);
+			name = AddressAutoFillDemoTests;
+			productName = AddressAutoFillDemoTests;
+			productReference = 6747851C29AD11FA009CF12E /* AddressAutoFillDemoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		67E240A529A6880800F6E994 /* AddressAutoFillDemo */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 67E240B429A6880900F6E994 /* Build configuration list for PBXNativeTarget "AddressAutoFillDemo" */;
@@ -185,6 +242,10 @@
 				LastSwiftUpdateCheck = 1420;
 				LastUpgradeCheck = 1420;
 				TargetAttributes = {
+					6747851B29AD11FA009CF12E = {
+						CreatedOnToolsVersion = 14.2;
+						TestTargetID = 67E240A529A6880800F6E994;
+					};
 					67E240A529A6880800F6E994 = {
 						CreatedOnToolsVersion = 14.2;
 					};
@@ -208,11 +269,19 @@
 			projectRoot = "";
 			targets = (
 				67E240A529A6880800F6E994 /* AddressAutoFillDemo */,
+				6747851B29AD11FA009CF12E /* AddressAutoFillDemoTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		6747851A29AD11FA009CF12E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		67E240A429A6880800F6E994 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -225,6 +294,17 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		6747851829AD11FA009CF12E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6747852829AD3369009CF12E /* Utilities.swift in Sources */,
+				6747852629AD127C009CF12E /* NativeTests.swift in Sources */,
+				6747852C29AD3F41009CF12E /* MapBoxTests.swift in Sources */,
+				6747852A29AD37A2009CF12E /* SmartyStreetsTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		67E240A229A6880800F6E994 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -245,7 +325,51 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		6747852129AD11FA009CF12E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 67E240A529A6880800F6E994 /* AddressAutoFillDemo */;
+			targetProxy = 6747852029AD11FA009CF12E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		6747852329AD11FA009CF12E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = P65G69K8PY;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.fanaticscollectibles.AddressAutoFillDemoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AddressAutoFillDemo.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/AddressAutoFillDemo";
+			};
+			name = Debug;
+		};
+		6747852429AD11FA009CF12E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = P65G69K8PY;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.fanaticscollectibles.AddressAutoFillDemoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AddressAutoFillDemo.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/AddressAutoFillDemo";
+			};
+			name = Release;
+		};
 		67E240B229A6880900F6E994 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -425,6 +549,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		6747852229AD11FA009CF12E /* Build configuration list for PBXNativeTarget "AddressAutoFillDemoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6747852329AD11FA009CF12E /* Debug */,
+				6747852429AD11FA009CF12E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		67E240A129A6880800F6E994 /* Build configuration list for PBXProject "AddressAutoFillDemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
